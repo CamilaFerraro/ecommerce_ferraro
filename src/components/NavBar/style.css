@@ -1,0 +1,25 @@
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: blueviolet; 
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+li{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
