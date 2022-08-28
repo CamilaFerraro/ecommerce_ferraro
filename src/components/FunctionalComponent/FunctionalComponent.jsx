@@ -1,8 +1,11 @@
+import './style.css';
 
-const FunctionalComponent = () => {
+const FunctionalComponent = ({titulo, subtitulo}) => {
+    console.log(titulo);
+    console.log(subtitulo);
     return (
         <div> 
-            <h1> Functional Component </h1>
+            <h1> {titulo} </h1>
         </div>
     );
 };
