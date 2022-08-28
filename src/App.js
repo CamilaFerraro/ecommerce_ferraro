@@ -2,12 +2,14 @@ import logo from '../src/fotos/Logo.png';
 import './App.css';
 import MiPrimerComponent from './components/MiPrimerComponent';
 import NavBar from './components/NavBar/NavBar'
+import FunctionalComponent from './components/FunctionalComponent/FunctionalComponent;'
 
 function App() {
   return (
     <div className="App">
       <NavBar/>
       <header className="App-header">
+        <FunctionalComponent/>
         <MiPrimerComponent/>
         <p>
           Edit <code>src/App.js</code> and save to reload.
