@@ -15,11 +15,15 @@ ul {
 }
 
 li {
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
 }
 
 a {
     color: white;
+    font-size: large;
     text-decoration: none;
+}
+.logo{
+    margin-left: -65px;
 }
