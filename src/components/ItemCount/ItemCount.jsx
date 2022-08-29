@@ -1,7 +1,8 @@
-
 import React from "react";
 import './ItemCount.css';
 import { useState } from "react";
+
+
 
 const ItemCount = ({nombreProducto}) => {
     
@@ -22,8 +23,8 @@ const ItemCount = ({nombreProducto}) => {
         }
 
     return (
-        <div className="counterContainer">
-            <h4>{nombreProducto}:</h4>
+        <div>
+            <h4>{nombreProducto}Mousse de Chocolate</h4>
             <div className="counter">
                 <div className="itemCountButton" onClick={restar}><h4>-</h4></div>
                 <div className="itemCount">{ItemCount}</div>

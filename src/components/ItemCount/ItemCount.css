@@ -7,13 +7,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: solid 1px black;
+    border: solid 2px blueviolet;
     margin: 5px 0;
     width: 100%;
-}
-
-.itemCountButton {
-    padding: 5px;
 }
 
 .itemCount {

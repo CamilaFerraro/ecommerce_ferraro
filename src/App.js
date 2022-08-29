@@ -10,8 +10,18 @@ import ContainerComponent from './components/ContainerComponent/ContainerCompone
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemCount from './components/ItemCount/ItemCount';
 import CartWidget from './components/CartWidget/CartWidget';
+import SuperForm from './components/SuperForm';
+import ClassComponent from './components/ClassComponents/ClassComponent';
+import FunctionalComponent from './components/FunctionalComponent';
+import Counter from './components/Counter';
+import { useState } from 'react';
+import CicloVida from './components/CicloVida';
 
 function App() {
+  {/*const [contadorPadre, setContadorPadre] = useState(0);
+  const sumarPadre = () => {
+    setContadorPadre(contadorPadre + 2)
+  }*/}
   return (
     <div className="App">
       <NavBar/>
@@ -19,6 +29,18 @@ function App() {
       <div>
       <ItemListContainer greeting="Bienvenido a mi página"/>
       </div>
+      <ItemCount/>
+      {/*<CicloVida numero={contadorPadre}/>
+      <h2>{contadorPadre}</h2>
+      <button onClick = {sumarPadre}>Sumar al Padre</button>*/}
+      {/*<Counter numero={contadorPadre}/>*/}
+      
+      {/*<SuperForm title='Hola'>
+        <div> Hola </div>
+        <div> hola hermano </div>
+      </SuperForm>*/}
+      {/*<ClassComponent/>*/}
+      {/*<FunctionalComponent/>*/}
         {/*<Titulo titulo={'Inicio'}/>
         <Titulo titulo={'Postres'}/>
         <Titulo titulo={'Pedidos'}/>*/}
@@ -31,7 +53,7 @@ function App() {
         {/*<FunctionalComponent titulo="Hola" subtitulo="como estas"/>
         <ClassComponent tipoDeAuto="Compacto" color="Violeta" matricula={123} modelo={{año: 2016}}/>
         <MiPrimerComponent/>*/}
-        <p>
+        {/*<p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
@@ -41,7 +63,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+      </a>*/}
       </header>
     </div>
   );
