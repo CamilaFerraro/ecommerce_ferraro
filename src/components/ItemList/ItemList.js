@@ -5,7 +5,7 @@ const ItemList = ({itemsList}) => {
     <>
       {itemsList.map((producto) => {
         return (
-          <item 
+          <Item 
             key = {producto.id}
             name={producto.name} 
             description = {producto.description}
@@ -13,7 +13,7 @@ const ItemList = ({itemsList}) => {
             image = {producto.image}
           />
         );      
-      })};
+      })}
     </>
   );
 };
