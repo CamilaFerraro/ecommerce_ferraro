@@ -1,9 +1,12 @@
 
-const Item = ({nombre, url}) => {
+const Item = ({id, name, description, price, image}) => {
   return (
-  <li>
-    <a href={url}>{nombre}</a>
-  </li>
+    <div>
+      <img src ={image} alt={name}/>
+      <h1>{name}</h1>
+      <p>{description}</p>
+      <p>{price}</p>
+    </div>
   );
 };
 

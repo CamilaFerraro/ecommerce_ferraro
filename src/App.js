@@ -18,10 +18,10 @@ import { useState } from 'react';
 import CicloVida from './components/CicloVida';
 
 function App() {
-  {/*const [contadorPadre, setContadorPadre] = useState(0);
+  /*const [contadorPadre, setContadorPadre] = useState(0);
   const sumarPadre = () => {
     setContadorPadre(contadorPadre + 2)
-  }*/}
+  }*/
   return (
     <div className="App">
       <NavBar/>
