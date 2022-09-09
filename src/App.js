@@ -16,6 +16,7 @@ import FunctionalComponent from './components/FunctionalComponent';
 import Counter from './components/Counter';
 import { useState } from 'react';
 import CicloVida from './components/CicloVida';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <NavBar/>
       <header className="App-header">
       <ItemListContainer greeting="Bienvenido a mi página"/>
+      <ItemDetailContainer/>
       </header>
     </div>
   );
