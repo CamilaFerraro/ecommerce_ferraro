@@ -1,15 +1,17 @@
 import './ItemListContainer.css';
-import ItemCount from "../ItemCount/ItemCount";
-import data from './mock-data';
+import { arregloPostres } from "../ItemListContainer/mock-data"
 import { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
+import { useParams } from 'react-router-dom';
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = () => {
+  const {categoryId} = useParams();
+  console.log('categoryId', categoryId)
   const [items, setItems] = useState([]);
-
+  
   const getData = new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(data);
+      resolve(arregloPostres);
     }, 2000);
   });
 

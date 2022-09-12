@@ -1,5 +1,5 @@
 
-const data = [
+export const arregloPostres = [
     {
         id: 1,
         name: 'Mousse de Chocolate',
@@ -17,8 +17,7 @@ const data = [
         stock: 20,
     },
     {
-        id: 3,
-        name: 'Panqueque de DDL',
+        id: 3, name: 'Panqueque de DDL',
         description: 'Panqueque de DDL Casero',
         price: '$230',
         image: 'https://i0.wp.com/irenemercadal.com/wp-content/uploads/2019/05/img_20190520_203804_9343411288613889609837-scaled.jpg?resize=2048%2C2048&ssl=1',
@@ -26,4 +25,3 @@ const data = [
     },
 ];
 
-export default data;

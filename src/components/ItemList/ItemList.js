@@ -2,9 +2,9 @@ import Item from "../Item/Item";
 
 const ItemList = ({itemsList}) => {
   return (
-    <>
-      {itemsList.map((producto) => {
-        return (
+    <div>
+      {
+        itemsList.map(producto => (
           <Item 
             key = {producto.id}
             name={producto.name} 
@@ -12,10 +12,9 @@ const ItemList = ({itemsList}) => {
             price = {producto.price}
             image = {producto.image}
           />
-        );      
-      })}
-    </>
-  );
-};
-
+        ))  
+      }  
+    </div>
+  )
+}
 export default ItemList;

@@ -1,39 +1,36 @@
-import React from 'react';
-import ItemDetail from '../ItemDetail/ItemDetail';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
+import './ItemDetailContainer.css';
+import { arregloPostres } from "../ItemListContainer/mock-data";
+import { ItemDetail } from "../ItemDetail/ItemDetail";
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = () => {
-    const [items, setItems] = useState([]);
+    const ItemDetailContainer = ()=>{
+    const {productId} = useParams();
+    const [item, setItem] = useState({});
 
-    const getItems = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                id: "1",
-                title: "Mousse de Chocolate",
-                description: "Mousse de Chocolate Casero",
-                price: "$200",
-                imageUrl:'https://images.hola.com/imagenes/cocina/recetas/20200130159337/mousse-chocolate-postre-facil/0-776-92/mousse-chocolate-facil-rapido-teka-m.jpg',
-            });
-        }, 2000);
-    });
-
-    useEffect(() => {
-        getItems.then((result) => {
-            setItems(result);
+    const getItem = (id)=>{
+        return new Promise((resolve, reject)=>{
+            const item = arregloPostres.find(item=>item.id === parseInt(id));
+            resolve(item)
         })
-    }, []);
+    }
 
-    return (
-        <div>
-            <ItemDetail
-                title={items.title}
-                description={items.description}
-                imageUrl={items.imageUrl}
-                price={items.price}
-                key={items.id}
-            />
+    useEffect(()=>{
+        const getPostre = async()=>{
+            const producto = await getItem(productId);
+            console.log('producto', producto)
+            setItem(producto);
+        }
+        getPostre();
+    },[productId])
+
+    console.log('item:', item)
+    return(
+        <div className="item-detail-container">
+            <p style={{width:"100%", color: "black"}}>DETALLE POSTRE</p>
+            <ItemDetail item={item}/>
         </div>
-    );
+    )
 }
 
 export default ItemDetailContainer;
