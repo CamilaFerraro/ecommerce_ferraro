@@ -1,6 +1,5 @@
 .itemDetail {
     display: flex;
-    border: 3px solid blueviolet;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -21,7 +21,6 @@ function App() {
             <Route path="/productos" element={<ItemListContainer/>}/>
             <Route path='/productos/:productId' element={<ItemDetailContainer/>}/>
           </Routes>
-          <ItemCount/>
         </div>
       </div>
     </BrowserRouter>

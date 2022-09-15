@@ -27,7 +27,7 @@ import { useParams } from "react-router-dom";
     console.log('item:', item)
     return(
         <div className="item-detail-container">
-            <p style={{width:"100%", color: "black"}}>DETALLE POSTRE</p>
+            <p style={{width:"100%", color: "black"}}>SELECCIONA LA CANTIDAD DE POSTRES QUE DESEES!</p>
             <ItemDetail item={item}/>
         </div>
     )
