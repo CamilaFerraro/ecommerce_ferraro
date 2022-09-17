@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 
 export const ContactoPage = () => {
+
     return (
-        <div>ContactoPage</div>
+        <div>
+            ContactoPage
+        </div>
     )
 
 };
