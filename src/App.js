@@ -23,6 +23,7 @@ function App() {
               <Route path='/contacto' element={<ContactoPage/>}/>
               <Route path="/productos" element={<ItemListContainer/>}/>
               <Route path='/productos/:productId' element={<ItemDetailContainer/>}/>
+              <Route path='/productos/:categoryId' element={<ItemListContainer/>}/>
               <Route path="/cart" element={<CartContainer/>}/>
             </Routes>
           </div>
