@@ -47,7 +47,7 @@ export const ContactoPage = () => {
         //solicitud
         const response = await getDocs(queryRef);
         console.log(response)
-       const productos = response.docs.map(doc => {
+        const productos = response.docs.map(doc => {
             const newProduct = {
             ...doc.data(),
             id: doc.id

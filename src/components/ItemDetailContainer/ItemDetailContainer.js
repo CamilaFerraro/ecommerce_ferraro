@@ -3,6 +3,8 @@ import './ItemDetailContainer.css';
 import { arregloPostres } from "../ItemListContainer/mock-data";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
+import {db} from "../../utils/firebase";
+import {collection, getDocs} from "firebase/firestore";
 
     const ItemDetailContainer = ()=>{
     const {productId} = useParams();
@@ -16,13 +18,19 @@ import { useParams } from "react-router-dom";
     }
 
     useEffect(()=>{
-        const getPostre = async()=>{
-            const producto = await getItem(productId);
-            console.log('producto', producto)
-            setItem(producto);
+        const getData = async () => {
+            const query = collection(db, "postres");
+            const response = await getDocs(query);
+            const postre = response.docs.map((doc) => {
+                const newPostre = {
+                  ...doc.data(),
+                  id: doc.id,
+                };
+                return newPostre;
+            });
         }
-        getPostre();
-    },[productId])
+        getData();
+    }, [])
 
     console.log('item:', item)
     return(

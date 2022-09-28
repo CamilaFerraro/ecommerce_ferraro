@@ -3,6 +3,8 @@ import { arregloPostres } from "../ItemListContainer/mock-data"
 import { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
+import {db} from "../../utils/firebase";
+import {collection, getDocs} from "firebase/firestore";
 
 const ItemListContainer = () => {
   const {categoryId} = useParams();
@@ -15,12 +17,20 @@ const ItemListContainer = () => {
     }, 2000);
   });
 
-  useEffect(() => {
-    getData.then((result) => {
-      setItems(result);
-      console.log(result);
-    })
-  }, []);
+  useEffect(()=>{
+    const getData = async () => {
+      const query = collection(db, "postres");
+      const response = await getDocs(query);
+      const postre = response.docs.map((doc) => {
+        const newPostre = {
+          ...doc.data(),
+          id: doc.id,
+        };
+        return newPostre;
+    });
+  }
+  getData();
+}, [])
 
   return (
     <>
