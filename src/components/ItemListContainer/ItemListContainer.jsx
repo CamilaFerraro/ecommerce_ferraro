@@ -10,12 +10,6 @@ const ItemListContainer = () => {
   const {categoryId} = useParams();
   console.log('categoryId', categoryId)
   const [items, setItems] = useState([]);
-  
-  const getData = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(arregloPostres);
-    }, 2000);
-  });
 
   useEffect(()=>{
     const getData = async () => {
@@ -28,6 +22,7 @@ const ItemListContainer = () => {
         };
         return newPostre;
     });
+    console.log(postre);
   }
   getData();
 }, [])

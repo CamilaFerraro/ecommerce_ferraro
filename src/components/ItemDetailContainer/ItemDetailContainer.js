@@ -28,6 +28,7 @@ import {collection, getDocs} from "firebase/firestore";
                 };
                 return newPostre;
             });
+            console.log(postre);
         }
         getData();
     }, [])
