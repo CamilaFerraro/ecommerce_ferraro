@@ -8,14 +8,7 @@ import {collection, getDocs, query, where} from "firebase/firestore";
 
 const ItemListContainer = () => {
   const {categoryId} = useParams();
-  console.log('categoryId', categoryId)
   const [items, setItems] = useState([]);
-
-  const promesa = new Promise((resolve, reject) =>{
-    setTimeout(()=>{
-      resolve(arregloPostres);
-    }, 2000);
-  })
 
   useEffect(()=>{
     const queryRef = !categoryId ? collection(db, "postes") : query(collection(db, "postres"), where("category", "==", categoryId));
@@ -31,8 +24,7 @@ const ItemListContainer = () => {
       setItems(resultados);
     })
   }, [categoryId])
-
-
+  
   return (
     <div>
       <p>POSTRES</p>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import './ItemDetailContainer.css';
-import { arregloPostres } from "../ItemListContainer/mock-data";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import {db} from "../../utils/firebase";
@@ -14,7 +13,6 @@ import {getDoc, doc} from "firebase/firestore";
         const getProducto = async () => {
             const queryRef = doc(db, "postres", productId);
             const response = await getDoc(queryRef);
-            console.log(response.data())
             const newPostre = {
                 id: response.id,
                 ...response.data(),
@@ -23,7 +21,7 @@ import {getDoc, doc} from "firebase/firestore";
             setItem(newPostre)
         } 
         getProducto();
-    }, [productId]);
+    },[productId]);
 
     return(
         <div className="item-detail-container">
