@@ -4,38 +4,42 @@ import { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import {db} from "../../utils/firebase";
-import {collection, getDocs} from "firebase/firestore";
+import {collection, getDocs, query, where} from "firebase/firestore";
 
 const ItemListContainer = () => {
   const {categoryId} = useParams();
   console.log('categoryId', categoryId)
   const [items, setItems] = useState([]);
 
+  const promesa = new Promise((resolve, reject) =>{
+    setTimeout(()=>{
+      resolve(arregloPostres);
+    }, 2000);
+  })
+
   useEffect(()=>{
-    const getData = async () => {
-      const query = collection(db, "postres");
-      const response = await getDocs(query);
-      const postre = response.docs.map((doc) => {
+    const queryRef = !categoryId ? collection(db, "postes") : query(collection(db, "postres"), where("category", "==", categoryId));
+    getDocs(queryRef).then(response=>{
+      const resultados = response.docs.map(doc=>{
         const newPostre = {
-          ...doc.data(),
           id: doc.id,
-        };
-        return newPostre;
-    });
-    console.log(postre);
-  }
-  getData();
-}, [])
+          ...doc.data(),
+        }
+        return newPostre
+      });
+      console.log(resultados)
+      setItems(resultados);
+    })
+  }, [categoryId])
+
 
   return (
-    <>
-      {items.length > 0 ? (
-        <ItemList itemsList = {items}/>
-      ) : (
-        <div>Cargando...</div>
-      )}
-    </>
-  );
-};
+    <div>
+      <p>POSTRES</p>
+      <ItemList itemsList = {items}/>
+    </div>
+  )
+}
+
 
 export default ItemListContainer;

@@ -27,6 +27,7 @@ export const CartContainer = () => {
         addDoc(queryRef, order).then(response=>{
             console.log("response", response);
             setIdOrder(response.id)
+            clearCart();
         });
 
     }
@@ -55,10 +56,16 @@ export const CartContainer = () => {
     return (
         <div>
             <button onClick={updateOrder}>actualizar orden</button>
-            {idOrder && <p>su orden fue creada, id {idOrder}</p>}
-            {
-                productCartList.length > 0 ?
-                <div>
+            {idOrder ?
+            <>
+                <p>su orden fue creada, id {idOrder}</p>
+                <Link to="/"><button>Ir al listado de productos</button></Link>
+            </>
+            :
+            <div>
+                {
+                  productCartList.length > 0 ?
+                  <div>
                     <h2 className='carritoElement'>Carrito:</h2>
                     {productCartList.map(item => (
                         <div className='itemEnCarrito'>
@@ -87,9 +94,11 @@ export const CartContainer = () => {
                     <p>El carrito está vacío, agrega algún producto</p>
                     <Link to="/"><button>Ir al listado de productos</button></Link>
                 </div>
+              }
+              :
+              <h3>Tu orden ha sido registrada!</h3>
+            </div>
             }
-            :
-            <h3>Tu orden ha sido registrada!</h3>
         </div>
     )
 }
