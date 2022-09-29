@@ -7,7 +7,7 @@ import {getDoc, doc} from "firebase/firestore";
 
     const ItemDetailContainer = ()=>{
     const {productId} = useParams();
-    const [item, setItem] = useState({});
+    const [item, setItem] = useState([]);
 
     useEffect(()=>{
         const getProducto = async () => {
