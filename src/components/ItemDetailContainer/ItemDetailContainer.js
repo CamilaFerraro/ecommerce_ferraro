@@ -26,7 +26,7 @@ import {getDoc, doc} from "firebase/firestore";
     return(
         <div className="item-detail-container">
             <p style={{width:"100%", color: "black"}}>SELECCIONA LA CANTIDAD DE POSTRES QUE DESEES!</p>
-            <ItemDetail item={item}/>
+            <ItemDetail itemsList={item}/>
         </div>
     )
 }

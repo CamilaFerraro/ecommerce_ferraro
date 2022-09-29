@@ -10,11 +10,11 @@ const ItemListContainer = () => {
   const {categoryId} = useParams();
   const [items, setItems] = useState([]);
 
-  const promesa = new Promise((resolve, reject) =>{
-    setTimeout(()=>{
-      resolve(arregloPostres);
+  const getItems = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(items);
     }, 2000);
-  })
+  });
 
   useEffect(()=>{
     const queryRef = !categoryId ? collection(db, "postes") : query(collection(db, "postres"), where("category", "==", categoryId));
@@ -35,10 +35,9 @@ const ItemListContainer = () => {
   return (
     <div>
       <p>POSTRES</p>
-      <ItemList itemsList = {items}/>
+      {!items ? (<h3>Cargando...</h3>) : (<ItemList itemsList = {items}/>)}
     </div>
-  )
+  );
 }
-
 
 export default ItemListContainer;
