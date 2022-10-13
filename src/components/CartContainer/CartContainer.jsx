@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import {db} from "../../utils/firebase";
-import {collection, addDoc, doc, updateDoc} from "firebase/firestore";
+import {collection, addDoc} from "firebase/firestore";
 
 export const CartContainer = () => {
     const {productCartList, removeItem, clearCart, getTotalPrice} = useContext(CartContext);
@@ -10,8 +10,6 @@ export const CartContainer = () => {
 
     const sendOrder = (event) => {
         event.preventDefault();
-       // console.log("orden enviada", event)
-       // console.log("nombre", event.target[0].value)
         const order = { 
             buyer:{
                 name: event.target[0].value,
@@ -22,82 +20,77 @@ export const CartContainer = () => {
             total: getTotalPrice(),
             date: new Date()
         }
-        console.log("order", order)
         const queryRef = collection(db, "orders");
         addDoc(queryRef, order).then(response=>{
-            console.log("response", response);
             setIdOrder(response.id)
             clearCart();
         });
 
     }
 
-    const updateOrder = () => {
-        const queryRef = doc(db, "orders", "6gf5DpiDKbaiVYRV8bu9");
-        updateDoc(queryRef, {
-            buyer: {
-                name: "camila",
-                phone: "1157848965",
-                email: "ferraro@gmail.com"
-            },
-            items:[
-                {
-                    category: "dulce",
-                    image: "https://firebasestorage.googleapis.com/v0/b/coderhouse-ecommerce-6c48d.appspot.com/o/img_20190520_203804_9343411288613889609837-scaled.webp?alt=media&token=c246d1fd-1aa7-4f6d-bcdb-8b05748ad80e",
-                    price: 230,
-                    name: "Panqueque de DDL"
-                }
-            ],
-            total: 230
-        }).then(response=>console.log(response))
-
-    }
-
     return (
         <div>
-            <button onClick={updateOrder}>actualizar orden</button>
-            {idOrder ?
-            <>
-                <p>su orden fue creada, id {idOrder}</p>
-                <Link to="/"><button>Ir al listado de productos</button></Link>
-            </>
-            :
-            <div>
-                {
-                  productCartList.length > 0 ?
-                  <div>
-                    <h2 className='carritoElement'>Carrito:</h2>
-                    {productCartList.map(item => (
-                        <div className='itemEnCarrito'>
-                            <img src={item.pictureUrl} height="50px" className='carritoElement' />
-                            <p className='carritoElement'>Cantidad: {item.quantity}</p>
-                            <p className='carritoElement'>{item.title}</p>
-                            <p className='carritoElement'>Precio unitario: ${item.price}</p>
-                            <p>Precio productos: {item.quantityPrice}</p>
-                            <button onClick={()=>removeItem(item.id)} className='carritoElement'>Remover producto</button>  
+            {!idOrder ?
+                <div>
+                    <h2 className='elementoCentrado'>Carrito:</h2>
+                    <div className='cart carritoElement'>
+                        {
+                            productCartList.map((item) => {
+                                return (
+                                    <div className='itemEnCarrito cartGrid' key={item.id}>    
+                                        <p className='cantidad'>{item.quantity}</p>
+                                        <img src={item.pictureUrl} height="50px" className='producto' alt={item.description} />
+                                        <p className='producto'>{item.title}</p>
+                                        <p className='precio'>${item.price}</p>
+                                        <div className='removerButton'>
+                                            <button onClick={()=>removeItem(item.id)} className='remover'>Remover producto</button>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }   
+                    </div>
+                    {
+                        productCartList.length > 0 ?
+                        <div className='total'>
+                            <div className='elementoCentrado'>
+                                <h3 className='carritoElement'>Total: ${getTotalPrice()}</h3>
+                                <button onClick={()=>clearCart()} className='carritoElement'>Vaciar carrito</button>
+                            </div>
+                            <div className='elementoCentrado'>
+                                <form onSubmit={sendOrder}>
+                                    <fieldset> 
+                                        <legend><strong>Enviar pedido:</strong></legend>
+                                        <div>
+                                            <label for="nombre">Nombre:</label>
+                                            <input type="text" name="name" />
+                                        </div>
+                                        <div>
+                                            <label for="nombre">Apellido:</label>
+                                            <input type="text" name="surname" />
+                                        </div>
+                                        <div>
+                                            <label for="email">Email:</label>
+                                            <input type="email" name="email" />
+                                        </div>
+                                        <div>
+                                            <label for="numero">Número de telefono:</label>
+                                            <input type="number" name="number" />
+                                        </div>
+                                        <input type="submit" value="Guardar orden" className="button" /> <input type="reset" value="Borrar" className="button" />
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
-                    ))}
-                    <button onClick={()=>clearCart()} className='carritoElement'>Vaciar carrito</button>
-                    <p>Precio total: {getTotalPrice()}</p>
-                    <form onSubmit={sendOrder}>
-                        <label>Nombre: </label>
-                        <input type="text"/>
-                        <label>Telefono: </label>
-                        <input type="text"/>
-                        <label>Correo: </label>
-                        <input type="email"/>
-                        <button type='submit'>Enviar orden</button>
-                    </form>
+                        :
+                        <div className='elementoCentrado'>
+                            <p className='carritoElement'>El carrito está vacío</p>
+                            <Link to='/' className='carritoElement'><button>Ver productos</button></Link>
+                        </div>
+                    }
                 </div>
                 :
-                <div>
-                    <p>El carrito está vacío, agrega algún producto</p>
-                    <Link to="/"><button>Ir al listado de productos</button></Link>
-                </div>
-              }
-              :
-              <h3>Tu orden ha sido registrada!</h3>
-            </div>
+                <h3 className='elementoCentrado'>Tu orden ha sido registrada!</h3>
             }
         </div>
     )

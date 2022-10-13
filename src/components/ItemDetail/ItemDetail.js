@@ -16,10 +16,10 @@ export const ItemDetail = ({title, image, description, price}) => {
     return (
         <div className='itemDetail'>
             <h1>{title}</h1>
-            <img src={image} alt={description} height="250px"/>
+            <img src={image} alt={description}/>
             <p>{description}</p>
             <p>{price}</p>
-            <h6>Cantidad seleccionada: {contador}</h6>
+            <p>Cantidad seleccionada: {contador}</p>
             <ItemCount stock={10} initial={1} onAdd={onAdd}/>
             {
                 contador > 0 &&
@@ -32,3 +32,4 @@ export const ItemDetail = ({title, image, description, price}) => {
     )
 }
 
+export default ItemDetail;

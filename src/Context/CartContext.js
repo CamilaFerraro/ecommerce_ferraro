@@ -11,12 +11,10 @@ export const CartProvider = ({children}) => {
     }
 
     const addItem = (item, quantity)=>{
-        console.log("item", item, "quantity", quantity)
         const newProduct = {
             ...item,
             quantity
         }
-        console.log("newProduct", newProduct)
         if (isInCart = (item.id)){
             const productPos = productCartList.findIndex((product=>product.id) === item.id);
             const newArreglo = [...productCartList];

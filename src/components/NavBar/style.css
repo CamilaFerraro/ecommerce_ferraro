@@ -25,12 +25,6 @@ a {
     font-size: large;
     text-decoration: none;
 }
-.logo{
+.logo {
     margin-left: -65px;
-}
-.claseActive{
-    color: blue;
-}
-.claseInactive{
-    color: white;
 }

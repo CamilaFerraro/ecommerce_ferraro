@@ -3,6 +3,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #c2c1c1;
-    padding: 10px;
+    background-color: #c2c1c1; 
+}
+
+.stock{
+    margin-left: 10px
 }
