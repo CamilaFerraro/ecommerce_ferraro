@@ -2,27 +2,27 @@ import React, { useState } from "react";
 
 export const CartContext = React.createContext();
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
     const [productCartList, setProductCartList] = useState([]);
 
-    const isInCart = (productId) =>{
-        const productExists = productCartList.some(item=>item.id === productId);
+    const isInCart = (productId) => {
+        const productExists = productCartList.some(item => item.id === productId);
         return productExists;
     }
 
-    const addItem = (item, quantity)=>{
+    const addItem = (item, quantity) => {
         const newProduct = {
             ...item,
             quantity
         }
-        if (isInCart = (item.id)){
-            const productPos = productCartList.findIndex((product=>product.id) === item.id);
+        if (isInCart(item.id)) {
+            const productPos = productCartList.findIndex(product => product.id === item.id);
             const newArreglo = [...productCartList];
             newArreglo[productPos].quantity = newArreglo[productPos].quantity = quantity;
             newArreglo[productPos].quantityPrice = newArreglo[productPos].quantity * newArreglo
             setProductCartList(newArreglo);
-           } else {
-            const newArreglo=[...productCartList];
+        } else {
+            const newArreglo = [...productCartList];
             newProduct.quantityPrice = newProduct.quantity * newProduct.price;
             newArreglo.push(newProduct);
             setProductCartList(newArreglo);
@@ -31,7 +31,7 @@ export const CartProvider = ({children}) => {
 
     const removeItem = (itemId) => {
         console.log("itemId", itemId)
-        const newArreglo = productCartList.filter(product=>product.id!==itemId);
+        const newArreglo = productCartList.filter(product => product.id !== itemId);
         setProductCartList(newArreglo)
     }
 
@@ -41,7 +41,7 @@ export const CartProvider = ({children}) => {
 
     const updateItem = (item, quantity) => {
         let newProductCartList = productCartList.filter(
-          (product) => product.id !== item.id
+            (product) => product.id !== item.id
         );
 
         const newProduct = {
@@ -64,8 +64,8 @@ export const CartProvider = ({children}) => {
         return totalProducts;
     }
 
-    return(
-        <CartContext.Provider value = {{productCartList, addItem, removeItem, clearItems, updateItem, isInCart, getTotalPrice, getTotalProducts}}>
+    return (
+        <CartContext.Provider value={{ productCartList, addItem, removeItem, clearItems, updateItem, isInCart, getTotalPrice, getTotalProducts }}>
             {children}
         </CartContext.Provider>
     )

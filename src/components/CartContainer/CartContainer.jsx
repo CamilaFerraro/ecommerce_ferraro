@@ -3,10 +3,13 @@ import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import {db} from "../../utils/firebase";
 import {collection, addDoc} from "firebase/firestore";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const CartContainer = () => {
-    const {productCartList, removeItem, clearCart, getTotalPrice} = useContext(CartContext);
+    const {productCartList, removeItem, clearItems, getTotalPrice} = useContext(CartContext);
     const [idOrder, setIdOrder] = useState("");
+
 
     const sendOrder = (event) => {
         event.preventDefault();
@@ -21,11 +24,15 @@ export const CartContainer = () => {
             date: new Date()
         }
         const queryRef = collection(db, "orders");
-        addDoc(queryRef, order).then(response=>{
-            setIdOrder(response.id)
-            clearCart();
+        addDoc(queryRef, order).then(response => {
+          console.log("response", response);
+            setIdOrder(response.id);
+            clearItems();
         });
-
+    }
+    
+    const success = ()=>{
+        Swal.fire('¡Pedido realizado con éxito!');
     }
 
     return (
@@ -38,10 +45,10 @@ export const CartContainer = () => {
                             productCartList.map((item) => {
                                 return (
                                     <div className='itemEnCarrito cartGrid' key={item.id}>    
-                                        <p className='cantidad'>{item.quantity}</p>
-                                        <img src={item.pictureUrl} height="50px" className='producto' alt={item.description} />
-                                        <p className='producto'>{item.title}</p>
-                                        <p className='precio'>${item.price}</p>
+                                    <p className='cantidad'>{item.quantity}</p>
+                                    <img src={item.image} height="100px" className='producto' />
+                                    <p className='producto'>{item.name}</p>
+                                    <p className='precio'>${item.price}</p>
                                         <div className='removerButton'>
                                             <button onClick={()=>removeItem(item.id)} className='remover'>Remover producto</button>
                                         </div>
@@ -55,7 +62,7 @@ export const CartContainer = () => {
                         <div className='total'>
                             <div className='elementoCentrado'>
                                 <h3 className='carritoElement'>Total: ${getTotalPrice()}</h3>
-                                <button onClick={()=>clearCart()} className='carritoElement'>Vaciar carrito</button>
+                                <button onClick={()=>clearItems()} className='carritoElement'>Vaciar carrito</button>
                             </div>
                             <div className='elementoCentrado'>
                                 <form onSubmit={sendOrder}>
@@ -77,7 +84,7 @@ export const CartContainer = () => {
                                             <label for="numero">Número de telefono:</label>
                                             <input type="number" name="number" />
                                         </div>
-                                        <input type="submit" value="Guardar orden" className="button" /> <input type="reset" value="Borrar" className="button" />
+                                        <button variant="success" type="submit" onClick={()=>success()}>Enviar pedido</button> <input type="reset" value="Borrar" className="button" />
                                     </fieldset>
                                 </form>
                             </div>
@@ -91,8 +98,10 @@ export const CartContainer = () => {
                 </div>
                 :
                 <h3 className='elementoCentrado'>Tu orden ha sido registrada!</h3>
+                
             }
         </div>
     )
 }
+
 

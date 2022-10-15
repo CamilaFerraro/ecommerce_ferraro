@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import './ItemDetailContainer.css';
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
-import {db} from "../../utils/firebase";
-import {getDoc, doc} from "firebase/firestore";
+import { db } from "../../utils/firebase";
+import { getDoc, doc } from "firebase/firestore";
 
-    const ItemDetailContainer = ()=>{
-    const {productId} = useParams();
-    const [item, setItem] = useState([]);
+const ItemDetailContainer = () => {
+    const { productId } = useParams();
+    const [item, setItem] = useState({});
 
-    useEffect(()=>{
+    useEffect(() => {
         const getProducto = async () => {
             const queryRef = doc(db, "postres", productId);
             const response = await getDoc(queryRef);
@@ -19,15 +19,18 @@ import {getDoc, doc} from "firebase/firestore";
             }
             console.log(newPostre);
             setItem(newPostre)
-        } 
+        }
         getProducto();
-    },[productId]);
 
-    return(
+    }, [productId]);
+    console.log('item:', item);
+
+
+    return (
         <div className="item-detail-container">
-            <p style={{width:"100%", color: "black"}}>SELECCIONA LA CANTIDAD DE POSTRES QUE DESEES!</p>
+            <p style={{ width: "100%", color: "black" }}>SELECCIONA LA CANTIDAD DE POSTRES QUE DESEES!</p>
             <div className="stock">
-                <ItemDetail itemsList={item}/>
+                <ItemDetail item={item} />
             </div>
         </div>
     )

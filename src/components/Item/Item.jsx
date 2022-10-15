@@ -1,20 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Item.css';
 
-const Item = ({image, id, name, description, price}) => {
+const Item = ({ item }) => {
   return (
     <div>
-      <img src ={image} alt={name} height = '500px'/>
-      <h1>{name}</h1>
-      <p>{id}</p>
-      <p>{description}</p>
-      <p>{price}</p>
-      <Link to={`/productos/${id}`}>
+      <img src={item.image} alt={item.name}
+        style={{ height: '500px' }} />
+      <p>{item.name}</p>
+      <p>{item.id}</p>
+      <p>{item.description}</p>
+      <p>{item.price}</p>
+      <Link to={`/productos/${item.id}`}>
         <button className='boton-ver'>Seleccionar Cantidad</button>
       </Link>
     </div>
   );
+
 };
 
 export default Item;

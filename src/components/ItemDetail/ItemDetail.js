@@ -4,21 +4,22 @@ import './ItemDetail.css';
 import { CartContext } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
 
-export const ItemDetail = ({title, image, description, price}) => {
+export const ItemDetail = ({item}) => {
     const {addItem} = useContext(CartContext);
     const [contador, setContador] = useState(0);
 
     const onAdd = (dato)=>{
         console.log("hizo click", dato);
         setContador(dato)
-        addItem(title, image, description, price, dato)
+        addItem(item, dato)
     }
+
     return (
         <div className='itemDetail'>
-            <h1>{title}</h1>
-            <img src={image} alt={description}/>
-            <p>{description}</p>
-            <p>{price}</p>
+            <h1>{item.title}</h1>
+            <img src={item.image} style={{ height: "200px"}} alt={item.description}/>
+            <p>{item.description}</p>
+            <p>{item.price}</p>
             <p>Cantidad seleccionada: {contador}</p>
             <ItemCount stock={10} initial={1} onAdd={onAdd}/>
             {
@@ -28,7 +29,6 @@ export const ItemDetail = ({title, image, description, price}) => {
                 </Link>
             }
         </div>
-
     )
 }
 
