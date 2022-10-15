@@ -15,3 +15,6 @@ Eli Ferraro's Catering es una página creada para mi madre que es cocinera, con 
 - CSS
 - JavaScript
 - [NodeJS]
+
+## Instalaciones requeridas para correr exitosamente el proyecto
+Este proyecto requiere de Node.js. Siga los siguientes pasos de instalación ingresando en el siguiente link: https://nodejs.org/es/download/.
