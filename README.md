@@ -3,7 +3,7 @@
 
 Eli Ferraro's Catering es una página creada para mi madre que es cocinera, con el fin de que, cuando este completa para publicar, le hagan pedidos por allí. 
 
-## GIF
+## GIF simulador de compra
 ![](https://github.com/CamilaFerraro/ecommerce_ferraro/blob/main/Proyecto%20Final%20React%20JS%20-%20Ferraro.gif)
 
 ## Herramientas Utilizadas
