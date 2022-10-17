@@ -22,7 +22,6 @@ const ItemListContainer = () => {
         }
         return newPostre
       });
-      console.log(resultados)
       setProductos(resultados);
     })
   }, [categoryId])

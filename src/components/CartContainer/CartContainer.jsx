@@ -15,9 +15,9 @@ export const CartContainer = () => {
         event.preventDefault();
         const order = { 
             buyer:{
-                name: event.target[0].value,
-                phone: event.target[1].value,
-                email: event.target[2].value
+                name: event.target.name.value + '' + event.target.surname.value,
+                phone: event.target.number.value,
+                email: event.target.email.value
             },
             items: productCartList,
             total: getTotalPrice(),
@@ -25,7 +25,6 @@ export const CartContainer = () => {
         }
         const queryRef = collection(db, "orders");
         addDoc(queryRef, order).then(response => {
-          console.log("response", response);
             setIdOrder(response.id);
             clearItems();
         });
@@ -69,19 +68,19 @@ export const CartContainer = () => {
                                     <fieldset> 
                                         <legend><strong>Enviar pedido:</strong></legend>
                                         <div>
-                                            <label for="nombre">Nombre:</label>
+                                            <label htmlFor="nombre">Nombre:</label>
                                             <input type="text" name="name" />
                                         </div>
                                         <div>
-                                            <label for="nombre">Apellido:</label>
+                                            <label htmlFor="nombre">Apellido:</label>
                                             <input type="text" name="surname" />
                                         </div>
                                         <div>
-                                            <label for="email">Email:</label>
+                                            <label htmlFor="email">Email:</label>
                                             <input type="email" name="email" />
                                         </div>
                                         <div>
-                                            <label for="numero">Número de telefono:</label>
+                                            <label htmlFor="numero">Número de telefono:</label>
                                             <input type="number" name="number" />
                                         </div>
                                         <button variant="success" type="submit" onClick={()=>success()}>Enviar pedido</button> <input type="reset" value="Borrar" className="button" />
@@ -97,7 +96,7 @@ export const CartContainer = () => {
                     }
                 </div>
                 :
-                <h3 className='elementoCentrado'>Tu orden ha sido registrada!</h3>
+                <p>Su ID de la compra es: {idOrder}. Le enviaremos un mail para proceder con el pago  de la misma.</p>
                 
             }
         </div>

@@ -30,7 +30,6 @@ export const CartProvider = ({ children }) => {
     }
 
     const removeItem = (itemId) => {
-        console.log("itemId", itemId)
         const newArreglo = productCartList.filter(product => product.id !== itemId);
         setProductCartList(newArreglo)
     }
@@ -55,7 +54,6 @@ export const CartProvider = ({ children }) => {
 
     const getTotalPrice = () => {
         const totalPrice = productCartList.reduce((acc, item) => acc + item.quantityPrice, 0)
-        console.log(totalPrice);
         return totalPrice;
     }
 

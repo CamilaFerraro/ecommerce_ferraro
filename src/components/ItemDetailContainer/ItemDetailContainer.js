@@ -17,13 +17,11 @@ const ItemDetailContainer = () => {
                 id: response.id,
                 ...response.data(),
             }
-            console.log(newPostre);
             setItem(newPostre)
         }
         getProducto();
 
     }, [productId]);
-    console.log('item:', item);
 
 
     return (

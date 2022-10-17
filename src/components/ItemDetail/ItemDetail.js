@@ -9,7 +9,6 @@ export const ItemDetail = ({item}) => {
     const [contador, setContador] = useState(0);
 
     const onAdd = (dato)=>{
-        console.log("hizo click", dato);
         setContador(dato)
         addItem(item, dato)
     }

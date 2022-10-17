@@ -9,7 +9,6 @@ export const ContactoPage = () => {
     const getData = async()=>{
         const queryRef = query(collection(db, "postres"), where("category", "==", "chocolate"))
         const response = await getDocs(queryRef);
-        console.log(response)
         const productos = response.docs.map(doc => {
             const newProduct = {
             ...doc.data(),
@@ -17,7 +16,6 @@ export const ContactoPage = () => {
             }
             return newProduct
         })
-        console.log(productos);
     }
     getData();
  }, [])
