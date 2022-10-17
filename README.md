@@ -4,7 +4,7 @@
 Eli Ferraro's Catering es una página creada para mi madre que es cocinera, con el fin de que, cuando este completa para publicar, le hagan pedidos por allí. 
 
 ## GIF simulador de compra
-![](https://github.com/CamilaFerraro/ecommerce_ferraro/blob/main/Proyecto%20Final%20React%20JS%20-%20Ferraro.gif)
+![] (https://github.com/CamilaFerraro/ecommerce_ferraro/blob/main/Proyecto%20Final%20React%20-%20Ferraro.gif)
 
 ## Herramientas Utilizadas
 - [Visual Studio Code] - Microsoft Visual Studio es un entorno de desarrollo integrado para Windows y macOS. Es compatible con múltiples lenguajes de programación, al igual que entornos de desarrollo web. Permite a los desarrolladores crear sitios y aplicaciones web, así como servicios web en cualquier entorno compatible con la plataforma .NET. Así, se pueden crear aplicaciones que se comuniquen entre estaciones de trabajo, páginas web, dispositivos móviles, dispositivos embebidos y videoconsolas, entre otros.
