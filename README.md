@@ -19,9 +19,9 @@ Eli Ferraro's Catering es una página creada para mi madre que es cocinera, con 
 ## Instalaciones requeridas para correr exitosamente el proyecto
 Este proyecto requiere de Node.js. Siga los siguientes pasos para la instalación:
 
-Clone el repositorio de GitHub _"https://github.com/SebaErcoreca/Chiripa.git"_
+Clone el repositorio de GitHub _"https://github.com/CamilaFerraro/ecommerce_ferraro"_
 ```sh
-git clone https://github.com/SebaErcoreca/Chiripa.git
+git clone https://github.com/CamilaFerraro/ecommerce_ferraro
 ```
 
 Instale node modules.
@@ -31,7 +31,7 @@ npm install
 
 Corra el Front-End Server
 ```sh
-cd EliferrarosCatering
+cd ecommerce
 npm start
 ```
 
